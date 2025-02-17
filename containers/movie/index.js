@@ -5,13 +5,10 @@ import Categories from '@/components/categories'
 import Genres from '@/mocks/genres.json'
 import MoviesSection from '@/components/movies-section'
 
-const HomeContainer = () => {
+const HomeContainer = ({movie}) => {
   return (
     <div>
-      <FeaturedMovie movie={Movies.results[0]} isCompact={true} />
-      <Categories categories={Genres.genres.slice(0, 5)} />
-      <MoviesSection title="Popular Films" movies={Movies.results.slice(1, 7)} />
-      <MoviesSection title="Your Favorites" movies={Movies.results.slice(7, 13)} />
+      <FeaturedMovie movie={movie} isCompact={false} />
     </div>
   );
 }
