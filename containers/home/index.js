@@ -6,7 +6,6 @@ import Genres from '@/mocks/genres.json';
 import MoviesSection from '@/components/movies-section';
 
 const HomeContainer = ({ selectedCategory }) => {
-  console.log('🚀 ~ HomeContainer ~ selectedCategory:', selectedCategory)
   return (
     <div>
       <FeaturedMovie movie={Movies.results[0]} isCompact={true} />
