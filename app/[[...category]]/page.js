@@ -1,17 +1,34 @@
 import HomeContainer from '@/containers/home';
-import Image from 'next/image';
-import Movies from '@/mocks/movies.json';
+import fetchMovieApi, {
+  getCategories,
+  getPopularMovies,
+  getSingleCategory,
+  getTopRatedMovies,
+} from '@/services/movie';
 
-export default function Home({ params }) {
+export default async function Home({ params }) {
   let selectedCategory;
+  const [
+    { results: topRatedMovies },
+    { results: popularMovies },
+    { genres: categories },
+  ] = await Promise.all([
+    getTopRatedMovies(),
+    getPopularMovies(),
+    getCategories(),
+  ]);
   if (params.category?.length > 0) {
-    selectedCategory = true;
+    const { results } = await getSingleCategory(params.category[0]);
+    selectedCategory = results;
   }
   return (
     <HomeContainer
+      topRatedMovies={topRatedMovies}
+      popularMovies={popularMovies}
+      categories={categories}
       selectedCategory={{
         id: params.category?.[0] ?? '',
-        movies: selectedCategory ? Movies.results.slice(0, 7) : [],
+        movies: selectedCategory ? selectedCategory.slice(0, 7) : [],
       }}
     />
   );

@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import styles from './styles.module.css';
+import Skeleton from '../skeleton';
 
 const MoviesSectionLoading = () => {
   return (
@@ -13,6 +15,6 @@ const MoviesSectionLoading = () => {
       </div>
     </div>
   );
-}
+};
 
 export default MoviesSectionLoading;
